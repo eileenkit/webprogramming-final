@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Translation Flash Cards</title>
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+
+  <body>
+      <div id="app">
+        <div class="main-content" id="main-content">
+        <div id="word-form">
+          <!-- on submit, prevent adding Word unless? wtf. on submit, also prevent getTranslates?. wtf is this. set input text as englishWords -->
+        
+        <form v-on:submit.prevent="getTranslates"><label>Enter an English word or phrase:<input type="text" v-model="englishWords"></label><button>Submit</button></form>
+
+          <p>{{englishWords}}</p> 
+
+        <div> <!-- for all of the items in translates, show translates-->
+            <p>in Spanish is: {{translates.text}}</p>
+        </div>
+        <form v-on:submit.prevent="addWord"><button>Add {{translates.text}} to List</button>
+        </form>
+        <div class="wordsWrapper">
+        <div class="wordsRow header">
+        </div>
+        <div class="wordsRow" v-for="(word, index) in words" v-bind:class="{odd: index % 2 !== 0}">
+            <div class="cell english-words">{{word.english}}</div>
+            <div class="cell spanish-words">{{word.spanish}}</div>
+            <div class="cell"><button type="button" v-on:click="deleteWord(word)">delete</button></div>
+      </div>
+    </div>
+</div>
+</div>
+<button id="toggle-cards" onclick="hideTable()">Practice with flash cards!</button>
+<section  id="flash-card-game-toggle" class="card-game">
+  <div v-for="word in words">
+    <flashcard :word-data="word"></flashcard>
+  </div>
+
+     </div>
+<template id="word">
+  <div class="word">
+    
+    <p>{{wordData.english}}:</br />
+    <div class="toggle-word" v-show="toggled">
+      <p>{{ wordData.spanish}}</p></div>
+      <button  @click="toggleWord">Show/Hide Spanish</button>
+</div>
+</template>
+</section>
+  </div>
+    <script src="axios_and_vue/vendors/axios.js"></script>
+    <script src="axios_and_vue/vendors/vue.js"></script>
+    <script src="axios_and_vue/js/script.js"></script>
+  </body>
+</html>

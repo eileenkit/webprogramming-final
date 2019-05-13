@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Practice Spanish!</title>
+  <link href="https://fonts.googleapis.com/css?family=Bentham" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+
+
+<h1>Practice Spanish!</h1>
+
+<div id="app">
+   	<div id="word-form">
+      <form v-on:submit.prevent="addWord">
+        <fieldset>
+        	<p>
+        	<label>Enter an English word to translate:<input v-model="englishWords" type="text"/></label>
+   			<label>Enter its Spanish translation:<input v-model="spanishWords" type="text"/></label>
+   			<label>Enter a unique id:<input v-model="wordId" type="text"/></label>
+   			</p>
+   			<p>{{englishWords}} in Spanish is: {{spanishWords}}. <button>Add {{spanishWords}} to list</button></p>
+   		</fieldset>
+   	</form>
+   </div>
+   	
+   	<div class="wordsWrapper">
+        <div class="wordsRow header">
+            <div class="cell english-words">My Words</div>
+            <div class="cell spanish-words">In Spanish</div>
+            <div class="delete"></div>
+        </div>
+        <div class="wordsRow" v-for="(word, index) in words" v-bind:class="{odd: index % 2 !== 0}">
+            <div class="cell english-words">{{word.english}}</div>
+            <div class="cell spanish-words">{{word.spanish}}</div>
+            <div class="cell"><button type="button" v-on:click="deleteWord(word)">delete</button></div>
+    	</div>
+    </div>
+       
+
+
+  <h1>Flashcard Game</h1>
+<word-container v-for="items in words" v-bind:english-word="items.english" v-bind:spanish-word="items.spanish" v-bind:key="items.id"></word-container>
+
+</div>
+
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <script src="js/main.js"></script>
+
+
+<script src="js/vendor/modernizr-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID.-->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>

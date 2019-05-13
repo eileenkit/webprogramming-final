@@ -67,10 +67,10 @@ var vm = new Vue({
         },
         deleteWord: function(wordObject){ //pass wordObject through function
             this.words=this.words.filter(function(word){ //set words to be filtered
-                if (word.id !==wordObject.id){  //if word id is not wordOject id (??)
+                if (word.id !==wordObject.id){  //if word id is not wordOject id
                     return true; //then do not delete
                 }else{
-                    return false; //otherwise delete?
+                    return false; //otherwise delete
                 }
                 });
             },
@@ -78,7 +78,7 @@ var vm = new Vue({
             if (this.validateWord()){  //if word is validated  
             let newWord={ //then let the newWord equal 
                 english: this.englishWords, //let submitted 'englishWords' be set as the 'english' data 
-                spanish: this.translates.text, //let submitted 'translates' to be equal to the 'spanish' data !!!! DO SOMETHING HERE
+                spanish: this.translates.text, //let output 'translates.text' to be equal to the 'spanish' data
                 id:this.englishWords //let the 'englishWords' submission be set as the id
             };
             this.words.push(newWord); //and now push this words as the newWord
@@ -93,7 +93,7 @@ var vm = new Vue({
             else {return true;} //othwerise, do validate word
             },
     },
-    created: function() { //not sure what this does
+    created: function() { 
         this.getTranslates();
     }
 });
